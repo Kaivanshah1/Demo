@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Todo</title>
+        <style>
+            h1{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top:100px;
+            }
+            #input{
+                display:flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                align-items: center;
+            }
+            #tasks{
+                display:flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                align-items: center;
+            }
+            #table{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "outer">
+        <h1>
+            Todo
+        </h1>
+        <div id = "input">
+        <input type="text" id="fname" name="fname"><br>
+        <button id = "add-btn">+</button>
+        <button id = "remove-btn">-</button>
+        </div>
+
+            <table id = "table">
+                <tr>
+                <th>Task</th>
+                </tr>
+            </table>
+    </div>
+        
+    </body>
+    <script>
+        let addBtn = document.querySelector("#add-btn");
+        let removeBtn = document.querySelector("#remove-btn");
+
+        addBtn.addEventListener("click", () => {
+            let input = document.querySelector("#fname");
+            let data = input.value;
+            if (data) { // check if input value is not empty
+                let table = document.querySelector("#table");
+                let row = table.insertRow();
+                let cell = row.insertCell();
+                cell.textContent = data;
+                input.value = ""; // clear the input textbox
+            }
+        });
+
+       
+        removeBtn.addEventListener("click", () => {
+            let table = document.querySelector("#table");
+            let rowCount = table.rows.length;
+            if (rowCount > 1) { // check if table has at least one row
+                table.deleteRow(rowCount - 1);
+            }
+        });
+    </script>
+</html>
